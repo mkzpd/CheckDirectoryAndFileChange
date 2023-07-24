@@ -37,7 +37,9 @@ private slots:
 private:
     Ui::MyWidget* ui;
     QDir WantOperaDir;
+    QDir WantSkipOperaDir;
     QString WantOperaDirToQstring;
+    QString WantSkipOperaDirToQstring;
     QStringList MyList;
     //QAbstractItemModel model;
     QStandardItemModel model;
