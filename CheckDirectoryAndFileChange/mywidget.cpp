@@ -188,7 +188,7 @@ void MyWidget::on_pushButton_2_clicked()
             QJsonObject obj = element.toObject();
             QString name = obj["name"].toString();
             QString size = obj["size"].toString();
-            //appendToModel(&model, name.split("/", Qt::SkipEmptyParts), size);
+            appendToModel(&model, name.split("/", Qt::SkipEmptyParts), size);
         }
     }
 
