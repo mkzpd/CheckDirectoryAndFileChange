@@ -153,7 +153,7 @@ void MyWidget::on_pushButton_2_clicked()
             QJsonObject obj = element.toObject();
             QString name = obj["name"].toString();
             QString size = obj["size"].toString();
-            appendToModel(&model, name.split("/", Qt::SkipEmptyParts), size);
+            //appendToModel(&model, name.split("/", Qt::SkipEmptyParts), size);
         }
     }
 
@@ -213,6 +213,10 @@ void MyWidget::on_pushButton_3_clicked()
         qDebug() << "MyList is " << MyList;
 
         MyWidget::scanDir(WantOperaDirToQstring);
+
+        QMessageBox msgBox;
+        msgBox.setText("backup have done!");
+        msgBox.exec();
 
 //        QDir dir(WantOperaDir);
 //        if (!dir.exists())
