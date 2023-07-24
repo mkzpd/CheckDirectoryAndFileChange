@@ -188,7 +188,7 @@ void MyWidget::on_pushButton_2_clicked()
             QJsonObject obj = element.toObject();
             QString name = obj["name"].toString();
             QString size = obj["size"].toString();
-            appendToModel(&model, name.split("/", Qt::SkipEmptyParts), size);
+            //appendToModel(&model, name.split("/", Qt::SkipEmptyParts), size);
         }
     }
 
@@ -238,7 +238,8 @@ void MyWidget::on_pushButton_3_clicked()
     QMessageBox::StandardButton reply;
 
     reply = QMessageBox::question(this, "IMPORTANT NOTICE 2", "Now ready to backup status of files that directory is: "
-    + WantOperaDirToQstring + "\n\n" + "When backup, program may be appear doesn't response, just only wait a moment",
+    + WantOperaDirToQstring + "\n\n" + "When backup, program may be appear doesn't response, it's normal, just only wait a moment, " +
+                                  "then you will get tip of backup file state have done.",
                                   QMessageBox::Save | QMessageBox::Cancel);
 
     if (reply == QMessageBox::Save) {
