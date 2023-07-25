@@ -164,7 +164,7 @@ public:
         pushButton_3->setText(QCoreApplication::translate("MyWidget", "Status of backup files", nullptr));
         label_3->setText(QCoreApplication::translate("MyWidget", "now", nullptr));
         label_2->setText(QCoreApplication::translate("MyWidget", "before", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("MyWidget", "Display Last record time", nullptr));
+        pushButton_4->setText(QCoreApplication::translate("MyWidget", "Display Last backup time", nullptr));
     } // retranslateUi
 
 };

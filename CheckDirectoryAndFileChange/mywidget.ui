@@ -142,7 +142,7 @@
          <enum>Qt::RightToLeft</enum>
         </property>
         <property name="text">
-         <string>Display Last record time</string>
+         <string>Display Last backup time</string>
         </property>
        </widget>
       </item>
