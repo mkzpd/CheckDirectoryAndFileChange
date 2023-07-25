@@ -159,9 +159,9 @@ public:
     void retranslateUi(QWidget *MyWidget)
     {
         MyWidget->setWindowTitle(QCoreApplication::translate("MyWidget", "MyWidget", nullptr));
-        pushButton->setText(QCoreApplication::translate("MyWidget", "OpenDirectory", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MyWidget", "DisplayDifferent", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MyWidget", "Status of backup files", nullptr));
+        pushButton->setText(QCoreApplication::translate("MyWidget", "SeleteDirectory", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("MyWidget", "DisplayDirAndFileDifferent", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("MyWidget", "backup status of files", nullptr));
         label_3->setText(QCoreApplication::translate("MyWidget", "now", nullptr));
         label_2->setText(QCoreApplication::translate("MyWidget", "before", nullptr));
         pushButton_4->setText(QCoreApplication::translate("MyWidget", "Display Last backup time", nullptr));
