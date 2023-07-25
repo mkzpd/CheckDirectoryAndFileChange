@@ -10,6 +10,7 @@
 #include <QStandardItem>
 #include <QAbstractItemModel>
 #include <QMessageBox>
+#include <QFileIconProvider>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MyWidget; }
@@ -24,6 +25,7 @@ public:
     void scanDir(QString WantOperaDirToQstring);
     void appendToModel(QStandardItemModel *model, const QStringList & list, const QString & size);
     QStandardItem* findChilItem(QStandardItem *it, const QString & text);
+    int strindexP(char s[], char t[]);
     ~MyWidget();
 
 private slots:
@@ -46,16 +48,18 @@ private:
     int CheckDirChoose;
     QMessageBox::StandardButton reply;
     QStringList MyList;
-    //QAbstractItemModel model;
-    QStandardItemModel model;
     QFileSystemModel *dirModel2;
     QFileSystemModel *dirModel;
-    QTreeView* treeView;
+    QTreeView treeView;
     QTreeView* treeView_2;
     QDateTime CurrTime;
     QDateTime LastRecordTime;
-    QTreeView* viewLeft;
+    //QTreeView* viewLeft;
+    QStandardItem *parentItem;
+    QStandardItem *item;
+    QFileIconProvider provider;
     QString LastRecordTimeToString;
+    QStandardItemModel model;
 
 
 };

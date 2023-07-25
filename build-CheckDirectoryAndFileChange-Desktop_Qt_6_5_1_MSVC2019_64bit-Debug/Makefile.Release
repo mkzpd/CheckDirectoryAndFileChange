@@ -370,6 +370,9 @@ release\moc_mywidget.cpp: ..\CheckDirectoryAndFileChange\mywidget.h \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\QMessageBox \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\qmessagebox.h \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\qdialog.h \
+		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\QFileIconProvider \
+		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\qfileiconprovider.h \
+		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtGui\qabstractfileiconprovider.h \
 		release\moc_predefs.h \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\bin\moc.exe
 	C:\my-win10-document\software---install\QT--install\6.5.1\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/release/moc_predefs.h -IC:/my-win10-document/software---install/QT--install/6.5.1/msvc2019_64/mkspecs/win32-msvc -IC:/my-win10-document/code/CheckDirectoryAndFileChange/CheckDirectoryAndFileChange -IC:/my-win10-document/software---install/QT--install/6.5.1/msvc2019_64/include -IC:/my-win10-document/software---install/QT--install/6.5.1/msvc2019_64/include/QtWidgets -IC:/my-win10-document/software---install/QT--install/6.5.1/msvc2019_64/include/QtGui -IC:/my-win10-document/software---install/QT--install/6.5.1/msvc2019_64/include/QtCore -I. -IC:\my-win10-document\software---install\VS--install\VC\Tools\MSVC\14.33.31629\include -IC:\my-win10-document\software---install\VS--install\VC\Tools\MSVC\14.33.31629\ATLMFC\include -IC:\my-win10-document\software---install\VS--install\VC\Auxiliary\VS\include -I"C:\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Windows Kits\10\\include\10.0.19041.0\\um" -I"C:\Windows Kits\10\\include\10.0.19041.0\\shared" -I"C:\Windows Kits\10\\include\10.0.19041.0\\winrt" -I"C:\Windows Kits\10\\include\10.0.19041.0\\cppwinrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" ..\CheckDirectoryAndFileChange\mywidget.h -o release\moc_mywidget.cpp
@@ -592,6 +595,9 @@ release\main.obj: ..\CheckDirectoryAndFileChange\main.cpp ..\CheckDirectoryAndFi
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\QMessageBox \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\qmessagebox.h \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\qdialog.h \
+		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\QFileIconProvider \
+		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\qfileiconprovider.h \
+		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtGui\qabstractfileiconprovider.h \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\QApplication \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\qapplication.h \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtCore\qcoreapplication.h \
@@ -809,6 +815,9 @@ release\mywidget.obj: ..\CheckDirectoryAndFileChange\mywidget.cpp ..\CheckDirect
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\QMessageBox \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\qmessagebox.h \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\qdialog.h \
+		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\QFileIconProvider \
+		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\qfileiconprovider.h \
+		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtGui\qabstractfileiconprovider.h \
 		ui_mywidget.h \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtCore\QVariant \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\QApplication \
@@ -855,9 +864,6 @@ release\mywidget.obj: ..\CheckDirectoryAndFileChange\mywidget.cpp ..\CheckDirect
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtCore\QDebug \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtCore\QFileInfo \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtCore\QDirIterator \
-		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\QFileIconProvider \
-		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtWidgets\qfileiconprovider.h \
-		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtGui\qabstractfileiconprovider.h \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtCore\QJsonParseError \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtCore\qjsondocument.h \
 		..\..\..\software---install\QT--install\6.5.1\msvc2019_64\include\QtCore\qjsonvalue.h \
