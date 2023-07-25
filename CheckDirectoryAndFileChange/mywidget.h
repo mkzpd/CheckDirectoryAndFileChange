@@ -41,6 +41,8 @@ private:
     QDir WantSkipOperaDir;
     QString WantOperaDirToQstring;
     QString WantSkipOperaDirToQstring;
+    QString BackupFileStateDir;
+    QString BackupFileStateDirToQstring;
     int CheckDirChoose;
     QMessageBox::StandardButton reply;
     QStringList MyList;

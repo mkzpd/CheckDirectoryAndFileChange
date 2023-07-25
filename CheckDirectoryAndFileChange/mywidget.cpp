@@ -69,12 +69,12 @@ void appendToModel(QStandardItemModel *model, const QStringList & list, const QS
 
 void MyWidget::scanDir(QString WantOperaDirToQstring)
 {
-    QDir APPCurrentPath = APPCurrentPath.currentPath();
-    QString  APPCurrentPathToString= APPCurrentPath.path() + "/";
-    qDebug() << "APPCurrentPath is:" << APPCurrentPath;
-    qDebug() << "APPCurrentPathToString is:" << APPCurrentPathToString;
+    QDir BackupFileStateDir = BackupFileStateDir.currentPath();
+    QString  BackupFileStateDirToQstring= BackupFileStateDir.path() + "/";
+    qDebug() << "APPCurrentPath is:" << BackupFileStateDir;
+    qDebug() << "APPCurrentPathToString is:" << BackupFileStateDirToQstring;
 
-    QFile file(APPCurrentPathToString + "rememberFileState.txt");
+    QFile file(BackupFileStateDirToQstring + "rememberFileState.txt");
     QFileInfo check_file(file);
     // check if file exists and if yes: Is it really a file and no directory?
     if (check_file.exists() && check_file.isFile()) {
@@ -137,31 +137,39 @@ void MyWidget::on_pushButton_clicked()
 {
     QDir directory = QFileDialog::getExistingDirectory(this, tr("select directory"));
 
-    qDebug() << "directory's Path is " << directory.absolutePath() + "/";
+    qDebug() << "directory's Path is " << directory.absolutePath();
+    qDebug() << "directory is " << directory;
 
-    QMessageBox::StandardButton reply;
+    //QMessageBox::StandardButton reply;
 
-    reply = QMessageBox::question(this, "IMPORTANT NOTICE 1", "You choose directory is: " + directory.absolutePath() + "/",
-                                  QMessageBox::Save | QMessageBox::Cancel);
+    if(!directory.path().contains("/")){
+        return;
+    }else{
+        reply = QMessageBox::question(this, "IMPORTANT NOTICE 1", "You choose directory is: " + directory.absolutePath(),
+                                      QMessageBox::Save | QMessageBox::Cancel);
 
-    if (reply == QMessageBox::Save) {
-        WantOperaDir = directory.absolutePath() + "/";
-        WantOperaDirToQstring = WantOperaDir.path() + "/";
-        CheckDirChoose = 1;
-        qDebug() << "Save was clicked, now you choice directory is: " << WantOperaDirToQstring;
+        if (reply == QMessageBox::Save) {
+            WantOperaDir = directory.absolutePath() + "/";
+            WantOperaDirToQstring = WantOperaDir.path() + "/";
+            CheckDirChoose = 1;
+            qDebug() << "Save was clicked, now you choice directory is: " << WantOperaDirToQstring;
+
+            dirModel2 = new QFileSystemModel(); //Create new model
+            dirModel2->setRootPath(WantOperaDirToQstring); //Set model path
+
+            ui->treeView_2->setModel(dirModel2); //Add model to QTreeView
+
+            QModelIndex idx2 = dirModel2->index(WantOperaDirToQstring); //Set the root item
+            ui->treeView_2->setRootIndex(idx2);
+        }
+        if(reply == QMessageBox::Cancel)
+        {
+            CheckDirChoose = 0;
+        }
+
     }
-    if(reply == QMessageBox::Cancel)
-    {
-        CheckDirChoose = 0;
-    }
 
-    dirModel2 = new QFileSystemModel(); //Create new model
-    dirModel2->setRootPath(WantOperaDirToQstring); //Set model path
 
-    ui->treeView_2->setModel(dirModel2); //Add model to QTreeView
-
-    QModelIndex idx2 = dirModel2->index(WantOperaDirToQstring); //Set the root item
-    ui->treeView_2->setRootIndex(idx2);
 
 }
 
