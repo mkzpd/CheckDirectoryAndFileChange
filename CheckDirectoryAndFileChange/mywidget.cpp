@@ -53,7 +53,7 @@ int MyWidget::strindexP(char s[], char t[]){
     return -1;
 }
 
-void MyWidget::appendToModel(QStandardItemModel *model, const QStringList & list, const QString & size){
+void MyWidget::appendToModel(QStandardItemModel *model, const QStringList & list, const QString & LastModifiedTime){
     parentItem = model->invisibleRootItem();
 
 
@@ -65,9 +65,10 @@ void MyWidget::appendToModel(QStandardItemModel *model, const QStringList & list
             continue;
         }
         item = new QStandardItem(*it);
+        item->setEditable(false);
         if(std::next(it) == list.end()){
             item->setIcon(provider.icon(QFileIconProvider::File));
-            parentItem->appendRow({item, new QStandardItem(size)});
+            parentItem->appendRow({item, new QStandardItem(LastModifiedTime)});
         }
         else{
             item->setIcon(provider.icon(QFileIconProvider::Folder));
@@ -75,6 +76,7 @@ void MyWidget::appendToModel(QStandardItemModel *model, const QStringList & list
         }
         parentItem = item;
     }
+
 }
 
 
@@ -95,6 +97,13 @@ void MyWidget::BackupDirAndFileState(QString WantOperaDirToQstring)
 
     QFile file(BackupFileStateDirToQstring + "rememberFileState.txt");
     QFileInfo check_file(file);
+
+    //QFileInfo info(file);
+    QDateTime lastModified = check_file.lastModified();
+    //lastModified = QDateTime::fromString("2010-10-25 10:28:58", "yyyy-MM-dd HH:mm:ss");
+    lastModified.setTimeSpec(Qt::UTC);
+    QDateTime lastModifiedLocalTime = lastModified.toLocalTime();
+
     // check if file exists and if yes: Is it really a file and no directory?
     if (check_file.exists() && check_file.isFile()) {
         file.remove();
@@ -122,7 +131,10 @@ void MyWidget::BackupDirAndFileState(QString WantOperaDirToQstring)
         if(!dir.contains(WantSkipOperaDirToQstring, Qt::CaseSensitive)
             && !dir.endsWith("/.", Qt::CaseSensitive) && !dir.endsWith("/..", Qt::CaseSensitive)){
 
-            out << "\"name\":"<<dir << "\n";
+            QString lastModifiedLocaleTime = QLocale("en_EN").toString(lastModified, "yyyy MMMM dd HH:mm:ss");
+
+            //out << "\"name\":"<<dir << ";" << "\"LastModifiedTime\":" << lastModified.toString() << "\n";
+            out << "{" << "\"name\": "<< "\"" << dir << "\"" << ";" << "\"LastModifiedTime\": " << "\"" << lastModifiedLocaleTime << "\"" << "}," << "\n";
             //qDebug() << "\"name\":"<<dir;
         }
     }
@@ -197,13 +209,50 @@ void MyWidget::on_pushButton_2_clicked()
 {
 
     model.setHorizontalHeaderLabels({"Name", "Size"});
+
+
+//    const std::string json = R"([
+//                             {"name": "/folder1/file1.txt";"size": "1KB 1"},
+//                             {"name": "/folder1/file2.txt";"size": "2023 July 25 19:53:09"},
+//                             {"name": "/folder1/sub/file3.txt";"size": "1KB"},
+//                             {"name": "/folder2/file4.txt";"size": "1KB"},
+//                             {"name": "/folder2/file5.txt";"size": "1KB"}
+//                             ])";
+
+
     const std::string json = R"([
-                             {"name": "/folder1/file1.txt";"size": "1KB"},
-                             {"name": "/folder1/file2.txt";"size": "1KB"},
-                             {"name": "/folder1/sub/file3.txt";"size": "1KB"},
-                             {"name": "/folder2/file4.txt";"size": "1KB"},
-                             {"name": "/folder2/file5.txt";"size": "1KB"}
-                             ])";
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/xthreads.h.FF54C47FB4B7382A.idx";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/xtimec.h.7EBD356A27955504.idx";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/xtr1common.E49B2C47A014CB5A.idx";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/xtree.80AD9DA8439D3086.idx";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/xutility.102A0CD5A197B686.idx";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/yvals.h.0315B3A9C4B27910.idx";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/yvals_core.h.D79E2161B6D038AE.idx";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/__msvc_chrono.hpp.C53D586FCE0358C7.idx";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/__msvc_system_error_abi.hpp.CFB01E470000EDDE.idx";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/__msvc_xlocinfo_types.hpp.1A22C9FFD90532E7.idx";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/__stddef_max_align_t.h.FEDF5B123A8C95DD.idx";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/compile_commands.json";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/debug";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/debug/CheckDirectoryAndFileChange.exe";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/debug/CheckDirectoryAndFileChange.ilk";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/debug/CheckDirectoryAndFileChange.pdb";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/debug/CheckDirectoryAndFileChange.vc.pdb";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/debug/main.obj";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/debug/moc_mywidget.cpp";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/debug/moc_mywidget.obj";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/debug/moc_predefs.h";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/debug/mywidget.obj";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/Makefile";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/Makefile.Debug";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/Makefile.Release";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/release";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/rememberFileState.txt";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/textPPP.txt";"LastModifiedTime": "2023 July 25 19:58:07"},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/ui_mywidget.h";"LastModifiedTime": "2023 July 25 19:58:07"}
+                  ])";
+
+
 
     QJsonParseError parse;
     // The string is not a valid json, the separator must be a comma
@@ -229,6 +278,7 @@ void MyWidget::on_pushButton_2_clicked()
     //treeView = new QTreeView(this);
     //treeView.setModel(&model);
     ui->treeView->setModel(&model);
+
 //    treeView->move(5,200);
 //    treeView->resize(300,200);
     //treeView.show();
@@ -370,8 +420,8 @@ void MyWidget::on_pushButton_4_clicked()
             msgBoxTip.setText("Can't find open backup file");
             msgBoxTip.exec();
         }else{
-            char* ReceiveReturnTime = new char [300];
-            char* ReceiveReturnPath = new char [300];
+            char* ReceiveReturnTime = new char [800];
+            char* ReceiveReturnPath = new char [800];
             MyWidget::FindStringInBackFile(NeedToFindTime, ReceiveReturnTime);
             MyWidget::FindStringInBackFile(NeedToFindBackFilePath, ReceiveReturnPath);
 
