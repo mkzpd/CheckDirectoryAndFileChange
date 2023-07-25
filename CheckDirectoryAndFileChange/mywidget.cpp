@@ -147,11 +147,12 @@ void MyWidget::on_pushButton_clicked()
     if (reply == QMessageBox::Save) {
         WantOperaDir = directory.absolutePath() + "/";
         WantOperaDirToQstring = WantOperaDir.path() + "/";
+        CheckDirChoose = 1;
         qDebug() << "Save was clicked, now you choice directory is: " << WantOperaDirToQstring;
     }
     if(reply == QMessageBox::Cancel)
     {
-        ;
+        CheckDirChoose = 0;
     }
 
     dirModel2 = new QFileSystemModel(); //Create new model
@@ -188,7 +189,7 @@ void MyWidget::on_pushButton_2_clicked()
             QJsonObject obj = element.toObject();
             QString name = obj["name"].toString();
             QString size = obj["size"].toString();
-            appendToModel(&model, name.split("/", Qt::SkipEmptyParts), size);
+            //appendToModel(&model, name.split("/", Qt::SkipEmptyParts), size);
         }
     }
 
@@ -235,31 +236,32 @@ void MyWidget::on_pushButton_3_clicked()
 
 
 
-    QMessageBox::StandardButton reply;
-
-    reply = QMessageBox::question(this, "IMPORTANT NOTICE 2", "Now ready to backup status of files that directory is: "
-    + WantOperaDirToQstring + "\n\n" + "When backup, program may be appear doesn't response, it's normal, just only wait a moment, " +
-                                  "then you will get tip of backup file state have done.",
-                                  QMessageBox::Save | QMessageBox::Cancel);
-
-    if (reply == QMessageBox::Save) {
-
-        //需要实现文件状态的备份
-        qDebug() << "Now ready to status of backup files that directory is: " << WantOperaDirToQstring;
-        qDebug() << "*************** This function need to be do! ***************";
-        qDebug() << "MyList is " << MyList;
-
-        MyWidget::scanDir(WantOperaDirToQstring);
 
 
+    if(CheckDirChoose == 1){
 
-        //        QDir dir(WantOperaDir);
-        //        if (!dir.exists())
-        //        {
-        //            dir.mkpath(WantOperaDirToQstring);
-        //        }
+        reply = QMessageBox::question(this, "IMPORTANT NOTICE 2", "Now ready to backup status of files that directory is: "
+                                                                      + WantOperaDirToQstring + "\n\n" + "When backup, program may be appear doesn't response, it's normal, just only wait a moment, " +
+                                                                      "then you will get tip of backup file state have done.",
+                                      QMessageBox::Save | QMessageBox::Cancel);
+        if (reply == QMessageBox::Save) {
 
-        /*
+            //需要实现文件状态的备份
+            qDebug() << "Now ready to status of backup files that directory is: " << WantOperaDirToQstring;
+            qDebug() << "*************** This function need to be do! ***************";
+            qDebug() << "MyList is " << MyList;
+
+            MyWidget::scanDir(WantOperaDirToQstring);
+
+
+
+            //        QDir dir(WantOperaDir);
+            //        if (!dir.exists())
+            //        {
+            //            dir.mkpath(WantOperaDirToQstring);
+            //        }
+
+            /*
         QDir myPath(WantOperaDir);
         //myPath.setFilter(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot);
         myPath.setFilter(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot);
@@ -278,7 +280,13 @@ void MyWidget::on_pushButton_3_clicked()
         }
         */
 
+        }
+    }else{
+        QMessageBox msgBoxTip;
+        msgBoxTip.setText("You don't choose directory!");
+        msgBoxTip.exec();
     }
+
     if(reply == QMessageBox::Cancel)
     {
         ;

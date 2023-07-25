@@ -9,6 +9,7 @@
 #include <QStandardItemModel>
 #include <QStandardItem>
 #include <QAbstractItemModel>
+#include <QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MyWidget; }
@@ -40,6 +41,8 @@ private:
     QDir WantSkipOperaDir;
     QString WantOperaDirToQstring;
     QString WantSkipOperaDirToQstring;
+    int CheckDirChoose;
+    QMessageBox::StandardButton reply;
     QStringList MyList;
     //QAbstractItemModel model;
     QStandardItemModel model;
