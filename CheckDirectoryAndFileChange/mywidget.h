@@ -22,9 +22,10 @@ class MyWidget : public QWidget
 
 public:
     MyWidget(QWidget *parent = nullptr);
-    void scanDir(QString WantOperaDirToQstring);
+    void BackupDirAndFileState(QString WantOperaDirToQstring);
     void appendToModel(QStandardItemModel *model, const QStringList & list, const QString & size);
     QStandardItem* findChilItem(QStandardItem *it, const QString & text);
+    void FindStringInBackFile(char* NeedToFindString, char* ReturnValue);
     int strindexP(char s[], char t[]);
     ~MyWidget();
 
@@ -40,8 +41,8 @@ private slots:
 private:
     Ui::MyWidget* ui;
     QDir WantOperaDir;
-    QDir WantSkipOperaDir;
     QString WantOperaDirToQstring;
+    QDir WantSkipOperaDir;
     QString WantSkipOperaDirToQstring;
     QString BackupFileStateDir;
     QString BackupFileStateDirToQstring;
@@ -54,12 +55,14 @@ private:
     QTreeView* treeView_2;
     QDateTime CurrTime;
     QDateTime LastRecordTime;
-    //QTreeView* viewLeft;
     QStandardItem *parentItem;
     QStandardItem *item;
     QFileIconProvider provider;
     QString LastRecordTimeToString;
     QStandardItemModel model;
+    QString ReceiveReturnPath;
+    QString ReceiveReturnTime;
+
 
 
 };
