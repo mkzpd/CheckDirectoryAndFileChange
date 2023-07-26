@@ -191,10 +191,10 @@ void MyWidget::BackupDirAndFileState(QString WantOperaDirToQstring)
         qint64 fileSize = file.size();
         qDebug() << "fileSize is:" << fileSize << "bytes";
         file.seek(fileSize - 8);
-        QString DeleteChar = file.read(1);
+        QString TestReadChar = file.read(1);
         AgainOut << "\n])\";" << "\n";
-        qDebug() << "Read char or string is:" << DeleteChar;
-        //out.setString("");
+        qDebug() << "Read char or string is:" << TestReadChar;
+
 
     } else {
         ;
