@@ -187,11 +187,15 @@ void MyWidget::BackupDirAndFileState(QString WantOperaDirToQstring)
     // check if file exists and if yes: Is it really a file and no directory?
     if (again_check_file.exists() && again_check_file.isFile()) {
         file.open(QIODevice::ReadWrite); // Or QIODevice::ReadWrite or QIODevice::WriteOnly
+        QTextStream AgainOut(&file);
         qint64 fileSize = file.size();
         qDebug() << "fileSize is:" << fileSize << "bytes";
-        file.seek(fileSize - 7);
-        qDebug() << "Read char or string is:" << file.read(1);
+        file.seek(fileSize - 8);
+        QString DeleteChar = file.read(1);
+        AgainOut << "\n])\";" << "\n";
+        qDebug() << "Read char or string is:" << DeleteChar;
         //out.setString("");
+
     } else {
         ;
     }
