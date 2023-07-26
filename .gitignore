@@ -1,0 +1,16 @@
+#OS junk files
+[Tt]humbs.db
+*.DS_Store
+*.user
+*.idx
+*.exe
+*.ilk
+*.pdb
+*.obj
+*.txt
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+#Project files
+[Bb]uild/
