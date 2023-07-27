@@ -129,12 +129,12 @@ void MyWidget::BackupDirAndFileState(QString WantOperaDirToQstring)
     */
 
     QDirIterator it(WantOperaDirToQstring, QDirIterator::Subdirectories);
-    WantSkipOperaDirToQstring = "C:/my-win10-document/software---install";
+    //WantSkipBackupDirToQstring = "C:/my-win10-document/software---install";
     quint64 LineNum = 0;
     while (it.hasNext()) {
 
         QString dir = it.next();
-        if(!dir.contains(WantSkipOperaDirToQstring, Qt::CaseSensitive)
+        if(!dir.contains(WantSkipBackupDirToQstring, Qt::CaseSensitive)
             && !dir.endsWith("/.", Qt::CaseSensitive) && !dir.endsWith("/..", Qt::CaseSensitive)){
 
             QFile file(dir);
@@ -244,7 +244,7 @@ void MyWidget::on_pushButton_clicked()
         if (reply == QMessageBox::Save) {
             WantOperaDir = directory.absolutePath() + "/";
             WantOperaDirToQstring = WantOperaDir.path() + "/";
-            CheckDirChoose = 1;
+            CheckWantOperaDirChooseIf = 1;
             qDebug() << "Save was clicked, now you choice directory is: " << WantOperaDirToQstring;
 
             dirModel2 = new QFileSystemModel(); //Create new model
@@ -257,7 +257,7 @@ void MyWidget::on_pushButton_clicked()
         }
         if(reply == QMessageBox::Cancel)
         {
-            CheckDirChoose = 0;
+            CheckWantOperaDirChooseIf = 0;
         }
 
     }
@@ -269,6 +269,7 @@ void MyWidget::on_pushButton_clicked()
 // Display status of backup files and now file or directory different
 void MyWidget::on_pushButton_2_clicked()
 {
+
 
     model.setHorizontalHeaderLabels({"Name", "LastModifiedTime"});
 
@@ -770,31 +771,58 @@ void MyWidget::on_pushButton_2_clicked()
 //status of backup files
 void MyWidget::on_pushButton_3_clicked()
 {
-    if(CheckDirChoose == 1){
+    if(1 == CheckWantOperaDirChooseIf){
+        if(0 == CheckSkipDirChooseIf){
+            reply = QMessageBox::question(this, "IMPORTANT NOTICE 2", "Now ready to backup status of files that directory is: "
+                                                                          + WantOperaDirToQstring + "\n\n" + "When backup, program may be appear doesn't response, it's normal, just only wait a moment, " +
+                                                                          "then you will get tip of backup file state have done.",
+                                          QMessageBox::Save | QMessageBox::Cancel);
+            if (reply == QMessageBox::Save) {
 
-        reply = QMessageBox::question(this, "IMPORTANT NOTICE 2", "Now ready to backup status of files that directory is: "
-        + WantOperaDirToQstring + "\n\n" + "When backup, program may be appear doesn't response, it's normal, just only wait a moment, " +
-        "then you will get tip of backup file state have done.",
-                                      QMessageBox::Save | QMessageBox::Cancel);
-        if (reply == QMessageBox::Save) {
+                //需要实现文件状态的备份
+                qDebug() << "Now ready to status of backup files that directory is: " << WantOperaDirToQstring;
+                qDebug() << "*************** This function need to be do! ***************";
 
-            //需要实现文件状态的备份
-            qDebug() << "Now ready to status of backup files that directory is: " << WantOperaDirToQstring;
-            qDebug() << "*************** This function need to be do! ***************";
+                qDebug() << "Backup file path is:" << WantOperaDirToQstring;
+                MyWidget::BackupDirAndFileState(WantOperaDirToQstring);
 
-            qDebug() << "Backup file path is:" << WantOperaDirToQstring;
-            MyWidget::BackupDirAndFileState(WantOperaDirToQstring);
+            }else{
+                QMessageBox msgBoxTip;
+                msgBoxTip.setText("You don't choose directory!");
+                msgBoxTip.exec();
+            }
 
+            if(reply == QMessageBox::Cancel)
+            {
+                ;
+            }
+        }else{
+            reply = QMessageBox::question(this, "IMPORTANT NOTICE 2", "Now ready to backup status of files that directory is: "
+            + WantOperaDirToQstring + "\n" + "You don't want to backup directory is:" + WantSkipBackupDirToQstring +"\n\n" +
+            "When backup, program may be appear doesn't response, " +
+            "it's normal, just only wait a moment, " +
+            "then you will get tip of backup file state have done.",
+                                          QMessageBox::Save | QMessageBox::Cancel);
+            if (reply == QMessageBox::Save) {
+
+                //需要实现文件状态的备份
+                qDebug() << "Now ready to status of backup files that directory is: " << WantOperaDirToQstring;
+                qDebug() << "*************** This function need to be do! ***************";
+
+                qDebug() << "Backup file path is:" << WantOperaDirToQstring;
+                MyWidget::BackupDirAndFileState(WantOperaDirToQstring);
+
+            }else{
+                QMessageBox msgBoxTip;
+                msgBoxTip.setText("You don't choose directory!");
+                msgBoxTip.exec();
+            }
+
+            if(reply == QMessageBox::Cancel)
+            {
+                ;
+            }
         }
-    }else{
-        QMessageBox msgBoxTip;
-        msgBoxTip.setText("You don't choose directory!");
-        msgBoxTip.exec();
-    }
-
-    if(reply == QMessageBox::Cancel)
-    {
-        ;
     }
 
 }
@@ -915,3 +943,51 @@ void MyWidget::on_pushButton_4_clicked()
     }
 
 }
+
+void MyWidget::on_pushButton_5_clicked()
+{
+    if(CheckWantOperaDirChooseIf != 1){
+        QMessageBox msgBoxTip;
+        msgBoxTip.setText("Please first select the directory you want to operate on!");
+        msgBoxTip.exec();
+        return;
+    }
+    QDir WantSkipBackupDir = QFileDialog::getExistingDirectory(this, tr("select directory"));
+
+    qDebug() << "**A** WantOperaDirToQstring's Path is " << WantSkipBackupDir.absolutePath();
+    qDebug() << "**B** WantSkipOperaDir is " << WantSkipBackupDir;
+
+    if(!WantSkipBackupDir.absolutePath().contains(WantOperaDirToQstring, Qt::CaseSensitive)){
+        QMessageBox msgBoxTip;
+        msgBoxTip.setText("ERROR:\n\n"
+                          "You want to Opera dir is:" + WantOperaDirToQstring + "\n\n" +
+                          "You want to skip dir is:" + WantSkipBackupDir.absolutePath() + "\n\n" +
+                          "The directories are invalid. May be they are same or the directories are inconsistent." + "\n\n" +
+                          "Please select directory again.");
+        msgBoxTip.exec();
+        return;
+    }
+
+    if(!WantSkipBackupDir.path().contains("/")){
+        return;
+    }else{
+        reply = QMessageBox::question(this, "IMPORTANT NOTICE 4", "You don't want to backup directory is: " + WantSkipBackupDir.absolutePath(),
+                                      QMessageBox::Save | QMessageBox::Cancel);
+
+        if (reply == QMessageBox::Save) {
+            WantSkipBackupDir = WantSkipBackupDir.absolutePath() + "/";
+            WantSkipBackupDirToQstring = WantSkipBackupDir.path() + "/";
+            CheckSkipDirChooseIf = 1;
+            qDebug() << "**C** WantOperaDirToQstring's Path is " << WantSkipBackupDir.path();
+            qDebug() << "**D** You don't want to backup save was clicked, now you don't want to backup directory is: " << WantSkipBackupDirToQstring;
+        }
+        if(reply == QMessageBox::Cancel)
+        {
+            CheckSkipDirChooseIf = 0;
+            ;
+        }
+
+    }
+
+}
+

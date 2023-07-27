@@ -38,15 +38,18 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_5_clicked();
+
 private:
     Ui::MyWidget* ui;
     QDir WantOperaDir;
     QString WantOperaDirToQstring;
-    QDir WantSkipOperaDir;
-    QString WantSkipOperaDirToQstring;
+    QDir WantSkipBackupDir;
+    QString WantSkipBackupDirToQstring;
     QString BackupFileStateDir;
     QString BackupFileStateDirToQstring;
-    int CheckDirChoose;
+    int CheckWantOperaDirChooseIf;
+    int CheckSkipDirChooseIf;
     QMessageBox::StandardButton reply;
     QStringList MyList;
     QFileSystemModel *dirModel2;
