@@ -25,7 +25,7 @@ public:
     void BackupDirAndFileState(QString WantOperaDirToQstring);
     void appendToModel(QStandardItemModel *model, const QStringList & list, const QString & size);
     QStandardItem* findChilItem(QStandardItem *it, const QString & text);
-    void FindStringInBackFile(char* NeedToFindString, char* ReturnValue);
+    void FindStringInBackFileLineByLine(char* NeedToFindString, char* ReturnValue, int mode);
     int strindexP(char s[], char t[]);
     ~MyWidget();
 
