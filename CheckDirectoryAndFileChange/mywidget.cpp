@@ -334,23 +334,27 @@ void MyWidget::on_pushButton_2_clicked()
 //                             ])";
 
 
-    /*
+
 
     const std::string json = R"([
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/";"LastModifiedTime": ""},
 {"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qmake.stash";"LastModifiedTime": ""},
 {"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd";"LastModifiedTime": ""},
 {"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache";"LastModifiedTime": ""},
 {"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd";"LastModifiedTime": ""},
 {"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index";"LastModifiedTime": ""},
-{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/adxintrin.h.F8695614109264BF.idx";"LastModifiedTime": ""},
-{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/algorithm.85F84F593F617683.idx";"LastModifiedTime": ""},
-{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/array.4A440D58C35C1B65.idx";"LastModifiedTime": ""},
-{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/assert.h.1440D2C4BC469D57.idx";"LastModifiedTime": ""},
-{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/atomic.46B98FDAFBC57939.idx";"LastModifiedTime": ""},
-{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/bmiintrin.h.575071838DB7E543.idx";"LastModifiedTime": ""}
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/c.txt";"LastModifiedTime": ""},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/index/";"LastModifiedTime": ""},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache/clangd/";"LastModifiedTime": ""},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/www/1440D2C4BC469D57.idx";"LastModifiedTime": ""},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/Release/a.txt";"LastModifiedTime": ""},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/Release/b.txt";"LastModifiedTime": ""},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/Debug";"LastModifiedTime": ""},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/qax/";"LastModifiedTime": ""},
+{"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/Debug/w.txt";"LastModifiedTime": ""}
 ])";
 
-*/
+
 
     QFile file(BackupFileStateDirToQstring + "rememberFileState.txt");
     QTextStream stream(&file);
@@ -430,7 +434,7 @@ void MyWidget::on_pushButton_2_clicked()
 
 
 
-#if 1
+#if 0
     const std::string json = R"([
 {"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qmake.stash";"CheckQint64Time": "1690176641";"LastModifiedTime": "2023.07.24 13:30:41"},
 {"name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd";"CheckQint64Time": "1690280515";"LastModifiedTime": "2023.07.25 18:21:55"},
