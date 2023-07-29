@@ -303,11 +303,13 @@ void MyWidget::BackupDirAndFileState(QString WantOperaDirToQstring)
 //                        "CheckQint64Time": "1690280515",
 //                        "QMimeType": "inode/directory",
 //                        "LastModifiedTime": "2023.07.25 18:21:55"
-//                    }
+//                    },
+//                    {
 //                        "name": "C:/my-win10-document/code/CheckDirectoryAndFileChange/build-CheckDirectoryAndFileChange-Desktop_Qt_6_5_1_MSVC2019_64bit-Debug/.qtc_clangd/.cache",
 //                        "CheckQint64Time": "1690176641",
 //                        "QMimeType": "inode/directory",
 //                        "LastModifiedTime": "2023.07.25 18:21:55"
+//                    }
 //                }
 
                 //good
