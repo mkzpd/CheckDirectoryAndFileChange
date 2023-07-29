@@ -65,6 +65,12 @@ private:
     QStandardItemModel model;
     QString ReceiveReturnPath;
     QString ReceiveReturnTime;
+    int MyWidget_appendToModel_DEBUG = 0;
+    int MyWidget_BackupDirAndFileState_DEBUG = 0;
+    int MyWidget_on_pushButton_clicked_DEBUG = 0;
+    int MyWidget_on_pushButton_5_clicked_DEBUG = 0;
+    int MyWidget_FindStringInBackFileLineByLine_DEBUG = 0;
+    int MyWidget_on_pushButton_2_clicked_DEBUG = 0;
 
 
 
